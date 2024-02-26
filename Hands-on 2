@@ -1,0 +1,181 @@
+
+(assert (Enfermedad Influenza dolorCorporal dolorCabeza tos OjoLloroso))
+(assert (Enfermedad InfeccionDeOido irritablidad dificultadParaDormir comezon inflamacionDeOido))
+(assert (Enfermedad InfeccionUrinaria ardorAlOrinar sensacionDeOrinar sangrado dificultadParaOrinar))
+(assert (Enfermedad Enfermedad Bronquitis dolorEnPecho cansancio tos dificultadRespiratoria))
+(assert (Enfermedad Gingivitis sangrado malAliento inflamacionDeEncias perdidaDental))
+(assert (Enfermedad HipertencionArterial dolorCabeza nauseas dificultadRespiratoria visionBorrosa))
+
+
+
+(defrule eliminarEnfermedad
+(eliminar ?n)
+=>
+(retract ?n))
+
+
+(defrule mostrartos
+(signo tos)
+=>
+(printout t "Para la Tos" "." crlf)
+(printout t "Influenza" "." crlf)
+(printout t "Bronquitis" "." crlf))
+
+
+(defrule mostrarDolorCorporal
+(sintoma dolorCorporal)
+=>
+(printout t "Para Dolor Corporal" "." crlf)
+(printout t "Influenza" "." crlf))
+
+
+(defrule mostrarDolorDeCabeza
+(sintoma dolorCabeza)
+=>
+(printout t "Para El Dolor de Cabeza" "." crlf)
+(printout t "Influenza" "." crlf)
+(printout t "Hipertencion" "." crlf))
+
+
+(defrule mostrarOjoLloroso
+(signo ojoLloroso)
+=>
+(printout t "Para Ojo Lloroso" "." crlf)
+(printout t "Influenza" "." crlf))
+
+
+(defrule mostrarIrritabilidad
+(sintoma irritabilidad)
+=>
+(printout t "Para La irritabilidad" "." crlf)
+(printout t "Infeccion de Oido" "." crlf))
+
+
+(defrule mostrardificultadParaDormir
+(sintoma dificultadParaDormir)
+=>
+(printout t "Para La Dificultad Para Dormir" "." crlf)
+(printout t "Infeccion de Oido" "." crlf))
+
+(defrule mostrarcomezon
+(signo comezon)
+=>
+(printout t "Para La Comezon" "." crlf)
+(printout t "Infeccion de Oido" "." crlf))
+
+
+(defrule mostrarinflamacionDeOido
+(signo inflamacionDeOido)
+=>
+(printout t "Para La Inflamacion De Oido" "." crlf)
+(printout t "Inflamacion de Oido" "." crlf))
+
+
+(defrule ardorAlOrinar
+(sintoma ardorAlOrinar)
+=>
+(printout t "Para Ardor Al Orinar" "." crlf)
+(printout t "Infeccion Urinaria" "." crlf))
+
+
+(defrule sensacionDeOrinar
+(sintoma sensacionDeOrinar)
+=>
+(printout t "Para Sensacion De Orinar" "." crlf)
+(printout t "Infeccion Urinaria" "." crlf))
+
+
+(defrule sangrado
+(signo sangrado)
+=>
+(printout t "Para Sensacion De Sangrado" "." crlf)
+(printout t "Infeccion Urinaria" "." crlf)
+(printout t "Gingivitis" "." crlf))
+
+dificultadParaOrinar
+(defrule dificultadParaOrinar
+(signo dificultadParaOrinar)
+=>
+(printout t "Dificultad Para Orinar" "." crlf)
+(printout t "Infeccion Urinaria" "." crlf))
+
+
+(defrule dolorEnPecho
+(sintoma dolorEnPecho)
+=>
+(printout t "Para Dolor En Pecho" "." crlf)
+(printout t "Bronquitis" "." crlf))
+
+
+(defrule cansancio
+(sintoma cansancio)
+=>
+(printout t "Para Cansancio" "." crlf)
+(printout t "Bronquitis" "." crlf))
+
+(defrule dificultadRespiratoria
+(signo dificultadRespiratoria)
+=>
+(printout t "Para Dificultad Respiratoria" "." crlf)
+(printout t "Bronquitis" "." crlf)
+(printout t "Hipertencion Arterial" "." crlf))
+
+
+(defrule malAliento
+(sintoma malAliento)
+=>
+(printout t "Para Mal Aliento" "." crlf)
+(printout t "Gingivitis" "." crlf))
+
+
+(defrule inflamacionDeEncias
+(signoinflamacionDeEncias)
+=>
+(printout t "Para Inflamacion De Encias" "." crlf)
+(printout t "Gingivitis" "." crlf))
+
+
+(defrule perdidaDental
+(signo perdidaDental)
+=>
+(printout t "Para Perdida Dental" "." crlf)
+(printout t "Gingivitis" "." crlf))
+
+
+(defrule nauseas
+(sintoma nauseas)
+=>
+(printout t "Para Nauseas" "." crlf)
+(printout t "Hipertencion Arterial" "." crlf))
+
+visionBorrosa
+(defrule visionBorrosa
+(signo visionBorrosa)
+=>
+(printout t "Para Vision Borrosa" "." crlf)
+(printout t "Hipertencion Arterial" "." crlf))
+
+(defrule corrertodo
+(Enfermedad ?nombre ?s1 ?s2 ?s3 ?s4)
+=>
+(printout t "Enfermedad: " ?nombre "." crlf)
+(printout t "Sintoma 1: " ?s1 "." crlf)
+(printout t "Sintoma 2: " ?s2 "." crlf)
+(printout t "Signo 1: " ?s3 "." crlf)
+(printout t "Signo 2: " ?s4 "." crlf)
+(printout t "**********************************" crlf)
+)
+
+
+(defrule filtrarEnfermedad
+(Busqueda ?nombreBuscar)
+(Enfermedad ?nombre ?s1 ?s2 ?s3 ?s4)
+(test (eq ?nombre ?nombreBuscar))
+=>
+(printout t "Enfermedad: " ?nombre "." crlf)
+(printout t "Sintoma 1: " ?s1 "." crlf)
+(printout t "Sintoma 2: " ?s2 "." crlf)
+(printout t "Signo 1: " ?s3 "." crlf)
+(printout t "Signo 2: " ?s4 "." crlf)
+((printout t "**********************************" crlf)
+)
