@@ -1,0 +1,6 @@
+(clear)
+(load modelo.clp)
+(load asserts.clp)
+(load reglas.clp)
+(reset)
+(run)
